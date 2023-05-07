@@ -12,17 +12,23 @@
     font-weight: bold;
 }
 
+#currentDay {
+    height: 100px;
+    width: 1000px;
+    border: 5px, solid rgba(97, 95, 95, 0.829);
+    border-radius: 10px;   
+    text-align: center;
+}
+
 #weather-container {
-    display: flex;
-    /* justify-content: center; */
-    /* top: 70%;
+     /* top: 70%;
     left: 50%;
-    margin-right: -50%;
     transform: translate(-50%, -50%); */
     height: 300px;
     width: 1300px;
     border: 5px, solid rgba(97, 95, 95, 0.829);
     border-radius: 10px;
+    margin-top: 50%;
 }
 
 #icons-container {
