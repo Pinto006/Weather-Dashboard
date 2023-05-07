@@ -91,3 +91,5 @@
     margin-bottom: 5px;
     margin-left: 5px;
 }
+
+/* curl "https://api.openweathermap.org/data/2.5/forecast?lat=32.7157&lon=117.1611&appid=6d6d6cc45adb90e005966b8864829171" */
