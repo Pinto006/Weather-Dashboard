@@ -51,6 +51,7 @@ function getWeather(latitude, longitude) {
     })
     .then(function(data){
         weather.temperature.value=Math.floor(data.main.temp - Kelvin);
+        weather.wind.value=data.wind.speed;
         weather.humidity.value=data.main.humidity;
         weather.city= data.name;
     })
