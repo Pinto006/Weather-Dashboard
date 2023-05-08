@@ -6,7 +6,9 @@ const cityNameEl = document.querySelector('#cityName');
 const currentDayEl = document.querySelector('#currentDay');
 const weatherEl = document.querySelector('.weather');
 const searchBtn = document.getElementById('searchBtn');
+// const requestUrl = "https://api.openweathermap.org/data/2.5/forecast?${lat}&${long}&appid=6d6d6cc45adb90e005966b8864829171";
 const requestUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=32.7157&lon=117.1611&appid=6d6d6cc45adb90e005966b8864829171";
+
 const Kelvin = 273;
 
 const weather = {
@@ -23,11 +25,11 @@ weather.temperature = {
     unit: "fehrenheit"
 };
 
-function setPosition(position) {
-    let longitude = position.coords.longitude;
-    let latitude = position.coords.latitude;
+function setPosition(city) {
+    const lat = city.coord.lat;
+    const long = city.coord.long;
 
-    getWeather(longitude, latitude);
+    getWeather(lat, long);
 };
 
 function displayWeather () {
@@ -41,7 +43,7 @@ function kelvIntoFahrenheit (temperature) {
   tempEl=((temperature-273.15) * 9/5 + 32)
 };
 
-function getWeather(temp,wind,humidity) {
+function getWeather() {
     console.log(fetch(requestUrl))
     fetch(requestUrl) //promise
         .then(function(response) { // THEN run code 
@@ -50,15 +52,17 @@ function getWeather(temp,wind,humidity) {
     })
     .then(function(data){ // promise chain
         console.log(data);
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.list.length; i++) {
+        console.log(data);
         var Temp = document.createElement('li');
-            // windEl = document.append('p');
-        // humidEl = document.append('p');
+        //     // windEl = document.append('p');
+        // // humidEl = document.append('p');
      
-        Temp.textContent = data[i].html_url;
+        Temp.textContent = data.list[i].main.temp;
+      
         currentDayEl.appendChild(Temp);
     }  
-    //     weather.temperature.value=Math.floor(data.main.temp - Kelvin);
+       
     //     weather.wind.value=data.wind.speed;
     //     weather.humidity.value=data.main.humidity;
     //     weather.city= data.name;
