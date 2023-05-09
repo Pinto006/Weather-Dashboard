@@ -7,7 +7,7 @@ const currentDayEl = document.querySelector('#currentDay');
 const weatherEl = document.querySelector('.weather');
 const searchBtn = document.getElementById('searchBtn');
 // const requestUrl = "https://api.openweathermap.org/data/2.5/forecast?${lat}&${long}&appid=6d6d6cc45adb90e005966b8864829171";
-const requestUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=32.7157&lon=117.1611&appid=6d6d6cc45adb90e005966b8864829171";
+const requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=${city name}&appid=6d6d6cc45adb90e005966b8864829171";
 
 const Kelvin = 273;
 
@@ -52,16 +52,24 @@ function getWeather() {
     })
     .then(function(data){ // promise chain
         console.log(data);
-    for (var i = 0; i < data.list.length; i++) {
-        console.log(data);
-        var Temp = document.createElement('li');
-        //     // windEl = document.append('p');
-        // // humidEl = document.append('p');
+            var long = response.coord.lon;
+            var lat = response.coord.lat;
+
+            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly,alerts&units=imperial&appid=6d6d6cc45adb90e005966b8864829171`)
+                // get response from one call api and turn it into objects
+                .then(function(response) {
+                    return response.json();
+                })
+    // for (var i = 0; i < data.list.length; i++) {
+    //     console.log(data);
+    //     var Temp = document.createElement('li');
+    //     //     // windEl = document.append('p');
+    //     // // humidEl = document.append('p');
      
-        Temp.textContent = data.list[i].main.temp;
+    //     Temp.textContent = data.list[i].main.temp;
       
-        currentDayEl.appendChild(Temp);
-    }  
+    //     currentDayEl.appendChild(Temp);
+    })};  
        
     //     weather.wind.value=data.wind.speed;
     //     weather.humidity.value=data.main.humidity;
@@ -70,6 +78,6 @@ function getWeather() {
     // .then(function(){
     //     displayWeather();
     // });
-})};
+// })};
 
 searchBtn.addEventListener('click', getWeather);

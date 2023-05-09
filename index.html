@@ -8,18 +8,31 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-        <h1 id="header">Weather Dashboard</h1>
-    <div id="inputContainer">Search for a City: <input id='ciyInput' type='text'></div>
-    <button id="searchBtn">Search</button>
-
-    <div id="currentDay">
-        <p id="cityName"></p>
-           <ul></ul>
-            <p class="wind">Wind: </p>
-            <p class="humidity">Humidity: </p>
-    </div>
-
-    <div id="weather-container">5-Day Forecast:
+    <div id="container">
+        <div id="header">
+        <h1>Weather Dashboard</h1>
+         </div>
+         <div id="search-container">
+            <input type="search" class="weather-search" placeholder="Your City">
+            <div id="search-history-container" class="search-history-container">
+  
+        </div>
+        <div id="current-weather">
+              <!-- current weather title -->
+            <div class="current-title-container">
+                <h2 id="current-title" class="current-title d-inline"></h2>
+                <img id="current-weather-icon" src="" alt="">
+            </div>
+            <p class="current-date" id="current-date"></p>
+            <!-- current weather temperature -->
+            <p class="current-temperature" id="current-temperature"></p>
+            <!-- current weather humidity -->
+            <p class="current-humidity" id="current-humidity"></p>
+            <!-- current weather wind speed -->
+            <p class="current-wind-speed" id="current-wind-speed"></p>
+        </div>
+        <div id="future-forecast">
+            <h1>5 Day Forecast:</h1>
         <div id="icons-container">
             <div class="icons">
                 <p class="weather" id="day1"></p>
@@ -59,8 +72,9 @@
             </div>
         </div>
     </div>
-
-
-    <script src="script.js"></script>
 </body>
+
+
+<script src="./assets/js/script.js"></script>
+
 </html>
