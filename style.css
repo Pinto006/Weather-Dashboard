@@ -7,9 +7,18 @@
    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+  }
+
 .h1-container {
     padding: 4px;
+
 };
+
+.h2 {
+    align-content: center;
+}
 
 .column-3 {
     padding: 4px;
