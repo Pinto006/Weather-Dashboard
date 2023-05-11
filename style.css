@@ -11,6 +11,22 @@
     box-sizing: border-box;
   }
   
+  .fiveDayPlaceHolder {
+    display: none;
+  }
+  .fiveDayDate {
+    display: none;
+  }
+  .fiveDaytTemp{
+    display: none;
+  }
+  .fiveDayWind{
+    display: none;
+  }
+  .fiveDayHumidity{
+    display: none;
+  }
+
   body {
     background-color: var(--primary);
     margin: 0;
