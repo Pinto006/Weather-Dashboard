@@ -8,6 +8,7 @@
 var userFormEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityName');
 var forecastContainerEl = document.querySelector('#fiveDayForecast');
+var currentContainerEl = document.querySelector('#currentWeather');
 var forecastSearchTerm = document.querySelector('#forecast-container');
 var submitBtn = document.querySelector('.btn');
 var fiveDayEl = document.querySelector('.fiveDayPlaceHolder');
@@ -53,7 +54,7 @@ var getCityInfo = function (cityName) { //question cityName
             var cityLon = response[0].lon;
             var cityLat = response[0].lat;
 
-            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&appid=6d6d6cc45adb90e005966b8864829171`)
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=${cityLat}&lon=${cityLon}&appid=6d6d6cc45adb90e005966b8864829171`)
                 .then(function (response) {
                     return response.json();
                 })
@@ -62,6 +63,7 @@ var getCityInfo = function (cityName) { //question cityName
                 console.log(response)
             
                 fiveDayForecast(response);
+                displayCurrentWeather(response);
             })
         })
 };
@@ -71,17 +73,51 @@ var getCityInfo = function (cityName) { //question cityName
 //     response.list[0].main.humidity
 // }
 
-var fiveDayForecast = function (response) {
-    document.querySelector('div').classList.remove('fiveDayEl');
-    document.querySelector('div').classList.remove('fiveDayDateEl');
-    document.querySelector('div').classList.remove('fiveDayTempEl');
-    document.querySelector('div').classList.remove('fiveDayWindEl');
-    document.querySelector('div').classList.remove('fiveDayHumidEl');
+var fiveDayForecast = function (data) {
+    var fiveDayArray = data.list.filter(forecast => forecast.dt_txt.includes("12:00:00"));
+    fiveDayArray.forEach(data => {
+        const div = document.createElement('div');
+        const date = document.createElement('h2');
+        const temp = document.createElement('h3');
+        const wind = document.createElement('h3');
+        const humidity = document.createElement('h3');
 
-    document.querySelector('.fiveDayDateEl').textContent = response.list[0].clouds.dt_txt;
-    document.querySelector('.fiveDayTempEl').textContent = response.list[0].main.temp;
-    document.querySelector('.fiveDayWindEl').textContent = response.list[0].wind.speed;
-    document.querySelector('.fiveDayHumidEl').textContent = response.list[0].main.humidity;
+        div.classList = 'card'
+        date.innerText = `${data.dt_txt}`
+        temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
+        wind.innerText = `Temp: ${data.wind.speed}MPH`
+        humidity.innerText = `Temp: ${data.main.humidity}%`
+
+        div.appendChild(date);
+        div.appendChild(temp);
+        div.appendChild(wind);
+        div.appendChild(humidity);
+        
+        forecastContainerEl.appendChild(div);
+    })
+};
+
+var displayCurrentWeather = function (data) {
+    var oneDayArray = data.list.filter(forecast => forecast.dt_txt.includes("12:00:00"));
+        console.log(data);
+        const div = document.createElement('div');
+        const date = document.createElement('h2');
+        const temp = document.createElement('h3');
+        const wind = document.createElement('h3');
+        const humidity = document.createElement('h3');
+
+        div.classList = 'card'
+        date.innerText = `${data.dt_txt}`
+        temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
+        wind.innerText = `Temp: ${data.wind.speed}MPH`
+        humidity.innerText = `Temp: ${data.main.humidity}%`
+
+        div.appendChild(date);
+        div.appendChild(temp);
+        div.appendChild(wind);
+        div.appendChild(humidity);
+        
+        currentContainerEl.appendChild(div);
 };
 
 userFormEl.addEventListener('click', formSubmitHandler);
