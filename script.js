@@ -16,7 +16,7 @@ var fiveDayDateEl = document.querySelector('.fiveDayDate');
 var fiveDayTempEl = document.querySelector('.fiveDaytTemp');
 var fiveDayWindEl = document.querySelector('.fiveDayWind');
 var fiveDayHumidEl = document.querySelector('.fiveDayHumidity');
-// var cityName = $("#cityName").val()
+
 
 
 //save city name to local storage
@@ -25,10 +25,8 @@ $(".btn").on("click", function () {
     console.log(this);
     var cityName = $(this).siblings(".card-header").val();
 
-    //save city to the local storage.
-    // localStorage.setItem(cityName);
 });
-// $('#search-history .card-body').val(localStorage.getItem(".card-body"));
+
 
 
 var formSubmitHandler = function (event) {
@@ -41,7 +39,7 @@ var formSubmitHandler = function (event) {
     }
 };
 
-var getCityInfo = function (cityName) { //question cityName
+var getCityInfo = function (cityName) { 
     var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=6d6d6cc45adb90e005966b8864829171`
 
     fetch(apiUrl)
@@ -68,11 +66,6 @@ var getCityInfo = function (cityName) { //question cityName
         })
 };
 
-// var displayCurrentWeather = function (response) {
-//     console.log(potato)
-//     response.list[0].main.humidity
-// }
-
 var fiveDayForecast = function (data) {
     var fiveDayArray = data.list.filter(forecast => forecast.dt_txt.includes("12:00:00"));
     fiveDayArray.forEach(data => {
@@ -97,27 +90,28 @@ var fiveDayForecast = function (data) {
     })
 };
 
-var displayCurrentWeather = function (data) {
-    var oneDayArray = data.list.filter(forecast => forecast.dt_txt.includes("12:00:00"));
-        console.log(data);
-        const div = document.createElement('div');
-        const date = document.createElement('h2');
-        const temp = document.createElement('h3');
-        const wind = document.createElement('h3');
-        const humidity = document.createElement('h3');
+//Attempting to add current weather//
+// var displayCurrentWeather = function (data) {
+//     var oneDayArray = data.list.filter(forecast => forecast.dt_txt.includes("12:00:00"));
+//         console.log(data);
+//         const div = document.createElement('div');
+//         const date = document.createElement('h2');
+//         const temp = document.createElement('h3');
+//         const wind = document.createElement('h3');
+//         const humidity = document.createElement('h3');
 
-        div.classList = 'card'
-        date.innerText = `${data.dt_txt}`
-        temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
-        wind.innerText = `Temp: ${data.wind.speed}MPH`
-        humidity.innerText = `Temp: ${data.main.humidity}%`
+//         div.classList = 'card'
+//         date.innerText = `${data.dt_txt}`
+//         temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
+//         wind.innerText = `Temp: ${data.wind.speed}MPH`
+//         humidity.innerText = `Temp: ${data.main.humidity}%`
 
-        div.appendChild(date);
-        div.appendChild(temp);
-        div.appendChild(wind);
-        div.appendChild(humidity);
+//         div.appendChild(date);
+//         div.appendChild(temp);
+//         div.appendChild(wind);
+//         div.appendChild(humidity);
         
-        currentContainerEl.appendChild(div);
-};
+//         currentContainerEl.appendChild(div);
+// };
 
 userFormEl.addEventListener('click', formSubmitHandler);
