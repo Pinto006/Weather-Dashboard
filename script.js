@@ -78,7 +78,7 @@ var fiveDayForecast = function (data) {
         div.classList = 'card'
         date.innerText = `${data.dt_txt}`
         temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
-        wind.innerText = `Wind ${data.wind.speed}MPH`
+        wind.innerText = `Wind: ${data.wind.speed}MPH`
         humidity.innerText = `Humidity: ${data.main.humidity}%`
 
         div.appendChild(date);
