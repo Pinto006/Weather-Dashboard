@@ -67,7 +67,7 @@ var getCityInfo = function (cityName) {
 };
 
 var fiveDayForecast = function (data) {
-    var fiveDayArray = data.list.filter(forecast => forecast.dt_txt.includes("12:00:00"));
+    var fiveDayArray = data.list.filter(forecast => forecast.dt_txt);
     fiveDayArray.forEach(data => {
         const div = document.createElement('div');
         const date = document.createElement('h2');
@@ -78,8 +78,8 @@ var fiveDayForecast = function (data) {
         div.classList = 'card'
         date.innerText = `${data.dt_txt}`
         temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
-        wind.innerText = `Temp: ${data.wind.speed}MPH`
-        humidity.innerText = `Temp: ${data.main.humidity}%`
+        wind.innerText = `Wind ${data.wind.speed}MPH`
+        humidity.innerText = `Humidity: ${data.main.humidity}%`
 
         div.appendChild(date);
         div.appendChild(temp);
