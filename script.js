@@ -61,7 +61,7 @@ var getCityInfo = function (cityName) {
                 console.log(response)
             
                 fiveDayForecast(response);
-                displayCurrentWeather(response);
+                // displayCurrentWeather(response);
             })
         })
 };
