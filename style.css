@@ -129,8 +129,12 @@
   }
   
   .list-group {
-    padding: 0;
+    /* padding: 70px 0;
     list-style: none;
+    border: auto; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
   
   .list-item {

@@ -55,8 +55,7 @@ var getCityInfo = function (cityName) {
             var city = cityInputEl.value;
             // console.log(city);  working
             cityArray.push(city);
-            localStorage.setItem('cities', JSON.stringify(cityArray)); // I see city name saved in LS
-            // get city's longitude and latitude
+            localStorage.setItem('cities', JSON.stringify(cityArray)); 
             var cityLon = response[0].lon;
             var cityLat = response[0].lat;
 
@@ -87,17 +86,21 @@ var fiveDayForecast = function (data) {
     fiveDayArray.forEach(data => {
         const div = document.createElement('div');
         const date = document.createElement('h2');
+        const icon = document.createElement('span');
         const temp = document.createElement('h3');
         const wind = document.createElement('h3');
         const humidity = document.createElement('h3');
 
         div.classList = 'card'
         date.innerText = `${data.dt_txt}`
+        icon.innerText = `${data.weather.icon}`
+        // https://openweathermap.org/img/wn/10d@2x.png
         temp.innerText = `Temp: ${data.main.temp}\u00B0 F`
         wind.innerText = `Wind: ${data.wind.speed}MPH`
         humidity.innerText = `Humidity: ${data.main.humidity}%`
 
         div.appendChild(date);
+        div.appendChild(icon);
         div.appendChild(temp);
         div.appendChild(wind);
         div.appendChild(humidity);
@@ -128,8 +131,9 @@ var displayCurrentWeather = function (data) {
     currentContainerEl.innerHTML = "";
         console.log("data",data);
         const div = document.createElement('div');
-         const cityName = document.createElement('h1');
+        const cityName = document.createElement('h1');
         const date = document.createElement('h2');
+        const icon = document.createElement('span');
         const temp = document.createElement('h3');
         const wind = document.createElement('h3');
         const humidity = document.createElement('h3');
@@ -137,12 +141,14 @@ var displayCurrentWeather = function (data) {
         div.classList = 'card'
         cityName.innerText = data.city.name
         date.innerText = `${data.list[0].dt_txt}`
+        icon.innerText = `${data.list[0].weather[0].icon}`
         temp.innerText = `Temp: ${data.list[0].main.temp}\u00B0 F`
         wind.innerText = `Temp: ${data.list[0].wind.speed}MPH`
         humidity.innerText = `Temp: ${data.list[0].main.humidity}%`
 
         div.appendChild(date);
         div.appendChild(cityName);
+        div.appendChild(icon);
         div.appendChild(temp);
         div.appendChild(wind);
         div.appendChild(humidity);
